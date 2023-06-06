@@ -1,0 +1,55 @@
+@startuml
+class game.NavyShip {
++ ArrayList<AShot> shoot()
+}
+class game.BattleShip {
++ void update()
++ ArrayList<AShot> shoot()
+}
+class game.Cruise {
++ <<Create>> Cruise()
+}
+class game.GhostShip {
++ <<Create>> GhostShip(String)
++ void update()
++ void setVisibility(boolean)
++ boolean getVisibility()
++ ArrayList<AShot> shoot()
+}
+class game.Main {
++ {static} void main(String[])
+}
+interface game.ICanDisappear {
+~ void setVisibility(boolean)
+~ boolean getVisibility()
+}
+class game.Ship {
+~ String nombre
++ <<Create>> Ship()
++ void update()
+}
+abstract class game.ASprite {
++ {abstract}void update()
+}
+abstract class game.AShot {
+}
+interface game.ICanShoot {
+~ ArrayList<AShot> shoot()
+}
+class game.Ball {
++ void update()
+}
+
+
+game.ICanShoot <|.. game.NavyShip
+game.Ship <|-- game.NavyShip
+game.ICanShoot <|.. game.BattleShip
+game.Ship <|-- game.BattleShip
+game.Ship <|-- game.Cruise
+game.ICanDisappear <|.. game.GhostShip
+game.ICanShoot <|.. game.GhostShip
+game.Ship <|-- game.GhostShip
+game.ASprite <|-- game.Ship
+game.ASprite <|-- game.AShot
+game.AShot <|-- game.Ball
+@enduml
